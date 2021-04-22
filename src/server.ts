@@ -1,21 +1,15 @@
-import express, { request } from "express";
+import express from "express";
+import "./database";
+import { routes } from "./routes";
 
-const PORT = 3333;
-
-const app = express();
+const PORT = 3333,
+      app = express();
 
 function initServer() {
     console.log(`Servidor rodando na porta ${PORT}`)
 }
 
-app.get("/", (request, response) => {
-    return response.send("Hello, world!");
-});
-
-app.post("/users", (request, response) => {
-    return response.send("Post, world!");
-});
+app.use(express.json());
+app.use(routes);
 
 app.listen(PORT, initServer);
-
-// missaoespacial
